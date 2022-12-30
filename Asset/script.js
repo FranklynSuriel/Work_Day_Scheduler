@@ -1,8 +1,14 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
+
+
 var hourPm = 1
+var timeOfDay = dayjs().format("H");
+
+console.log(typeof timeOfDay);
 function createScheduler(){
+  
   
   for(var hourId = 9; hourId <= 17; hourId++ ){
     
@@ -41,7 +47,18 @@ function createScheduler(){
       hour.text(hourPm + 'PM');
       hourPm++;
     }
-   
+    
+    if(hourId < timeOfDay){
+      timeBlock.addClass("past");
+      timeBlock.removeClass("present future");
+    }else if (hourId == timeOfDay){
+      timeBlock.addClass("present");
+      timeBlock.removeClass("past future");
+    }else {
+      timeBlock.addClass("future");
+      timeBlock.removeClass("past present");
+    }
+    
     
 
   }
@@ -94,8 +111,8 @@ $(function calendar() {
   //
   // TODO: Add code to display the current date in the header of the page.
   setInterval(function() {
-    var today = dayjs();
-    $('#currentDay').text(dayjs().format("dddd, MMMM D, YYYY"));
+    $('#currentDay').text(dayjs().format("dddd, MMMM Do, YYYY"));
+    $('#currentTime').text(dayjs().format("hh:mm:ss"));
     
   }, 1000);
 });
