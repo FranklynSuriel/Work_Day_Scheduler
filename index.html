@@ -21,19 +21,26 @@
     href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
     rel="stylesheet"
     />
-    <!-- Link the Style.css -->
-    <link rel="stylesheet" href="./Asset/style.css" />
     <!-- Link the DayJS library -->
     <script
-    src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
-    integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
-    crossorigin="anonymous"
+      src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+      integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+      crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/plugin/advancedFormat.js" 
+    ></script>
+    <!-- Load plugin as window.dayjs_plugin_NAME -->
+    <script>
+      dayjs.extend(window.dayjs_plugin_advancedFormat)
+    </script>
+       
     <!-- Link jquery library -->
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" 
     integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" 
     crossorigin="anonymous"
     ></script>          
+    <!-- Link the Style.css -->
+    <link rel="stylesheet" href="./Asset/style.css" />
     <title>Work Day Scheduler</title>
   </head>
   
@@ -59,9 +66,10 @@
         <div id="hour-16" class="row time-block present"></div>
         <div id="hour-17" class="row time-block future"></div>
         
+        
         <!-- Link the script file -->
         <script src="./Asset/script.js"></script>
       </main>
-  </body>
-</html>
+    </body>
+    </html>
     

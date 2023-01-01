@@ -49,6 +49,8 @@ $(function calendar() {
     
     // timeOfDay will get the current hour in 24 hour format
     // and will be use to apply the color code of each block.
+    
+
     var timeOfDay = Number(dayjs().format("H"));
     // Add code to apply the past, present, or future class to each time
     // block by comparing the id to the current hour.
@@ -62,6 +64,7 @@ $(function calendar() {
       timeBlock.addClass("future");           //will add class future.
       timeBlock.removeClass("past present");  //and will remove past or present if that class exist.
     }  
+        
   }
   // Add a listener for click events on the save button.
   buttons.on('click', function(event){
@@ -83,9 +86,40 @@ $(function calendar() {
   $('#hour-16 .description').val(localStorage.getItem('hour-16'))
   $('#hour-17 .description').val(localStorage.getItem('hour-17'))
   
+  
+  function test(){
+    var timeOfDay = Number(dayjs().format("H"));
+    var idHour = $('#hour-' + timeOfDay)
+    var timePast = timeOfDay - 1
+    // var timeFuture = timeOfDay + 1
+   
+    // Add code to apply the past, present, or future class to each time
+    // block by comparing the id to the current hour.
+    if(timeOfDay > timePast){                   //if time is less than current time.
+      idHour = $('#hour-' + timePast);
+      idHour.addClass("past");             //will add class past.
+      idHour.removeClass("present future");//and will remove present or future if that class exist.
+      // console.log(idHour);
+    }
+    
+    if(timeOfDay){
+      idHour = $('#hour-' + timeOfDay);
+      idHour.addClass("present");          //will add class present.
+      idHour.removeClass("past future"); 
+      // console.log(idHour);
+    }
+  }
+
+  setInterval(test,1000)
+
+
+
+
   // Add code to display the current date in the header of the page.
   setInterval(function() {
-    $('#currentDay').text(dayjs().format("dddd, MMMM Do, YYYY"));
-    $('#currentTime').text(dayjs().format("hh:mm:ss"));    
+    $('#currentDay').text(dayjs().format('dddd, MMMM Do, YYYY'));
+    // $('#currentDay').text(dayjs().format("dddd, MMMM Do, YYYY"));
+    $('#currentTime').text(dayjs().format("hh:mm A"));    
+       
   }, 1000);
 });
