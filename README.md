@@ -1,15 +1,7 @@
 # Work_Day_Scheduler
 
 ## Description
-Simple calendar application that allows a user to save events for each hour of the day
-
-
-* **The current day is displayed at the top of the calendar.**
-* **Present timeblocks for standard business hours.**
-* **Each timeblock is color coded to indicate whether it is in the past, present, or future.**
-* **You can enter an event.**
-* **You can save the text for that event in local storage.**
-* **the saved events will persist.**
+Simple calendar application that allows a user to save events for each hour of the day. Saved events will persist on the screen and it will present the actual date and time. 
 
 ## Link
 https://franklynsuriel.github.io/Work_Day_Scheduler/

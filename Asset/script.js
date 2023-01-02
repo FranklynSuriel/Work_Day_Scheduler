@@ -51,13 +51,13 @@ $(function calendar() {
     // and will be use to apply the color code of each block.
     
 
-    var timeOfDay = Number(dayjs().format("H"));
+    var currentHour = Number(dayjs().format("H"));
     // Add code to apply the past, present, or future class to each time
     // block by comparing the id to the current hour.
-    if(hourId < timeOfDay){                   //if time is less than current time.
+    if(hourId < currentHour){                   //if time is less than current time.
       timeBlock.addClass("past");             //will add class past.
       timeBlock.removeClass("present future");//and will remove present or future if that class exist.
-    }else if (hourId === timeOfDay){          //if time is equal to current time.
+    }else if (hourId === currentHour){          //if time is equal to current time.
       timeBlock.addClass("present");          //will add class present.
       timeBlock.removeClass("past future");   //and will remove past or future if that class exist.
     }else {                                   //if time is not less or not equal to current time.
@@ -86,34 +86,22 @@ $(function calendar() {
   $('#hour-16 .description').val(localStorage.getItem('hour-16'))
   $('#hour-17 .description').val(localStorage.getItem('hour-17'))
   
-  
-  function test(){
-    var timeOfDay = Number(dayjs().format("H"));
-    var idHour = $('#hour-' + timeOfDay)
-    var timePast = timeOfDay - 1
-    // var timeFuture = timeOfDay + 1
-   
-    // Add code to apply the past, present, or future class to each time
-    // block by comparing the id to the current hour.
-    if(timeOfDay > timePast){                   //if time is less than current time.
-      idHour = $('#hour-' + timePast);
-      idHour.addClass("past");             //will add class past.
-      idHour.removeClass("present future");//and will remove present or future if that class exist.
-      // console.log(idHour);
-    }
-    
-    if(timeOfDay){
-      idHour = $('#hour-' + timeOfDay);
-      idHour.addClass("present");          //will add class present.
-      idHour.removeClass("past future"); 
-      // console.log(idHour);
-    }
+  // Create a function to update the color code of the time-block automatically  
+  function colorCode(){
+    // set two variables for the current hour and the last hour
+    var currentHour = Number(dayjs().format("H"));    
+    var pastHour = timeOfDay - 1
+    // When the hour change,the past hour will apply class past and erase class present
+    idHour = $('#hour-' + pastHour);
+    idHour.addClass("past");             
+    idHour.removeClass("present");
+    // When the hour change,the current hour will apply class present and erase class future
+    idHour = $('#hour-' + currentHour);
+    idHour.addClass("present");          
+    idHour.removeClass("future");     
   }
 
-  setInterval(test,1000)
-
-
-
+  setInterval(colorCode,1000)
 
   // Add code to display the current date in the header of the page.
   setInterval(function() {
