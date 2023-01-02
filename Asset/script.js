@@ -89,16 +89,17 @@ $(function calendar() {
   // Create a function to update the color code of the time-block automatically  
   function colorCode(){
     // set two variables for the current hour and the last hour
-    var currentHour = Number(dayjs().format("H"));    
-    var pastHour = timeOfDay - 1
+    var currentHour = Number(dayjs().format("H"));
+    var pastHour = currentHour - 1
+    var hourId;
     // When the hour change,the past hour will apply class past and erase class present
-    idHour = $('#hour-' + pastHour);
-    idHour.addClass("past");             
-    idHour.removeClass("present");
-    // When the hour change,the current hour will apply class present and erase class future
-    idHour = $('#hour-' + currentHour);
-    idHour.addClass("present");          
-    idHour.removeClass("future");     
+    hourId = $('#hour-' + pastHour);    
+    hourId.addClass("past");             
+    hourId.removeClass("present");
+      // When the hour change,the current hour will apply class present and erase class future
+    hourId = $('#hour-' + currentHour);   
+    hourId.addClass("present");          
+    hourId.removeClass("future");     
   }
 
   setInterval(colorCode,1000)
